@@ -8,6 +8,9 @@ router.get("/", async (req, res) => {
   res.send("hello from me");
 });
 
+//route for register
+
+
 router.post("/api/register", async (req, res) => {
   const { name, email, password, cpassword } = req.body;
 
@@ -32,6 +35,8 @@ router.post("/api/register", async (req, res) => {
     res.status(400).json({ msg: e });
   }
 });
+
+//route for login
 
 router.post("/api/login", async (req, res) => {
   const { email, password } = req.body;

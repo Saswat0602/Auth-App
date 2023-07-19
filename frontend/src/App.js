@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Registration from "./components/Registration";
 import Login from "./components/Login";
 import NotFound from "./components/NotFound";
+import Home from "./components/Home";
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Login/>} />
         <Route exact path="/register" element={<Registration/>} />
+        <Route exact path="/home" element={<Home/>} />
         <Route exact path="*" element={<NotFound/>} />
       </Routes>
 
