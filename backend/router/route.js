@@ -69,10 +69,13 @@ router.post("/api/login", async (req, res) => {
 
 //route for homr page
 
-const validate = require("../middleware/validate");
-router.post("/api/home", validate ,async (req, res) => {
-  const user = req.verifiedUser;
-  res.send(user)
+router.post("/api/home", validate , (req, res) => {
+  console.log(req.correctUser);
+
+  const finalUser = req.correctUser;
+
+  res.send(finalUser);
 });
+
 
 module.exports = router;

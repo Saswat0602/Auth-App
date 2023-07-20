@@ -3,25 +3,25 @@ const User = require("../models/user");
 
 const validate = async (req, res, next) => {
   try {
-    const  token = req.headers['authorization']
+    const token = req.headers["authorization"];
 
     const verifyToken = jwt.verify(token, process.env.SECRATE);
 
-    const verifiedUser = await User.findById({_id:verifyToken._id})
-    console.log(verifiedUser);
-    if(!verifiedUser || !verifyToken){
-        throw new Error("cant find user")
+    const correctUser = await User.findById({ _id: verifyToken._id });
 
+    console.log(correctUser);
+
+    if (!verifyToken && !correctUser) {
+      throw new Error("user not found");
     }
-    req.verifiedUser = verifiedUser;
 
-    next()
+    req.correctUser = correctUser;
 
-
-  } catch (e) {
+    next();
+  } catch (error) {
     res.status(401).send("un authorise user");
-    console.log(e);
+    console.log(error);
   }
 };
 
-module.exports = validate
+module.exports = validate;
