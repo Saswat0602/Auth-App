@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
+const validate  = require("../middleware/validate")
 
 const router = express.Router();
 
@@ -64,6 +65,14 @@ router.post("/api/login", async (req, res) => {
   } catch (error) {
     res.status(404).json({ message: " error in login", error: error });
   }
+});
+
+//route for homr page
+
+const validate = require("../middleware/validate");
+router.post("/api/home", validate ,async (req, res) => {
+  const user = req.verifiedUser;
+  res.send(user)
 });
 
 module.exports = router;
