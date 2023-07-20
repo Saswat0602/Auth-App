@@ -69,7 +69,7 @@ router.post("/api/login", async (req, res) => {
 
 //route for homr page
 
-router.post("/api/home", validate , (req, res) => {
+router.get("/api/home", validate , (req, res) => {
   console.log(req.correctUser);
 
   const finalUser = req.correctUser;
